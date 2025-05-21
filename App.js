@@ -9,10 +9,13 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
-  Alert,
   Pressable,
 } from "react-native";
-import { useFonts, Montserrat_400Regular, Montserrat_700Bold } from '@expo-google-fonts/montserrat';
+import {
+  useFonts,
+  Montserrat_400Regular,
+  Montserrat_700Bold,
+} from "@expo-google-fonts/montserrat";
 
 const imgExterna = {
   uri: "https://estaticos.elcolombiano.com/binrepository/848x565/68c0/780d565/none/11101/UPIA/foto-getty_45248333_20240531183800.jpg",
@@ -23,21 +26,23 @@ export default function App() {
     Montserrat_400Regular,
     Montserrat_700Bold,
   });
-  const [mensaje, setMensaje] = useState('');
-  const [backgroundColor, setBackgroundColor] = useState('white');   
+  let color = "white";
+  const [mensaje, setMensaje] = useState("");
+  const [backgroundColor, setBackgroundColor] = useState(color);
 
   const handlePress = () => {
-    setBackgroundColor('lightgrey');
+    setBackgroundColor((prevColor) =>
+      prevColor === color ? "lightgrey" : color
+    );
   };
 
   const onPressContactar = () => {
-  if (mensaje.trim === '') {
-    Alert.alert('Envía un mensaje.');
-  } else {
-    Alert.alert(mensaje);
-  }
-  }
- 
+    if (mensaje.trim() === "") {
+      alert("Envía un mensaje.");
+    } else {
+      alert(mensaje);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -48,21 +53,24 @@ export default function App() {
           resizeMode="cover"
         >
           <StatusBar style="light" />
-          <View style={[styles.card,  { backgroundColor: backgroundColor }]}>
+          <View style={[styles.card, { backgroundColor: backgroundColor }]}>
             <Image source={imgExterna} style={styles.perfil} />
             <Text style={styles.title}>Juan Fernando Quintero</Text>
             <Text style={styles.subtitle}>Futbolista</Text>
-            <TextInput style={styles.input} placeholder="Ingrese un nota" keyboardType="default" value={mensaje} onChangeText={setMensaje}/>
+            <TextInput
+              style={styles.input}
+              placeholder="Ingrese un nota"
+              keyboardType="default"
+              value={mensaje}
+              onChangeText={(texto) => setMensaje(texto)}
+            />
             <TouchableOpacity style={styles.button} onPress={onPressContactar}>
               <Text style={styles.buttonText}>Contactar</Text>
             </TouchableOpacity>
-            <Pressable>
-              <Text style = {styles.button}  onPress={handlePress}> Cambiar color</Text>
+            <Pressable style={styles.button} onPress={handlePress}>
+              <Text style={styles.buttonText}> Cambiar color</Text>
             </Pressable>
-           
-       
           </View>
-        
         </ImageBackground>
       </SafeAreaView>
     </View>
@@ -86,7 +94,6 @@ const styles = StyleSheet.create({
   },
   card: {
     marginTop: 100,
-    backgroundColor: "#fff",
     width: 300,
     height: 500,
     display: "grid",
@@ -103,7 +110,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontFamily: "Montserrat_700Bold",
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     color: "#252850",
     textAlign: "center",
   },
@@ -114,28 +121,27 @@ const styles = StyleSheet.create({
     fontWeight: "400",
     color: "#252850",
     textAlign: "center",
-    fontStyle: 'italic'
+    fontStyle: "italic",
   },
   input: {
     height: 40,
     margin: 12,
     borderWidth: 1,
-    borderColor: 'grey',
+    borderColor: "grey",
     padding: 10,
-    borderRadius:10,
-
+    borderRadius: 10,
   },
   button: {
-    backgroundColor: '#40E0D0',
+    backgroundColor: "#40E0D0",
     padding: 10,
     marginTop: 15,
     borderRadius: 10,
-    alignItems: 'center',
+    alignItems: "center",
   },
   buttonText: {
-    color: 'white',
+    color: "white",
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   text: {
     fontSize: 16,
@@ -143,5 +149,5 @@ const styles = StyleSheet.create({
   wrapperCustom: {
     borderRadius: 8,
     padding: 6,
-}
-})
+  },
+});
