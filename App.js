@@ -52,7 +52,7 @@ export default function App() {
           style={styles.background}
           resizeMode="cover"
         >
-          <StatusBar style={styles.statusBar} />
+          <StatusBar style="light"/>
           <View style={[styles.card, { backgroundColor: backgroundColor }]}>
             <Image source={imgExterna} style={styles.perfil} />
             <Text style={styles.title}>Juan Fernando Quintero</Text>
@@ -78,9 +78,6 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  statusBar: {
-    flex: 1,
-  },
   safeAreaView: {
     flex: 1,
   },
@@ -111,10 +108,9 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     borderRadius: "20%",
-    alignContent: "center",
-    placeContent: "center",
-    alignItems: "center",
-    justifyContent: "center",
+    display: "block",
+    marginLeft: "auto",
+    marginRight: "auto",
   },
   title: {
     marginTop: 10,
