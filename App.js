@@ -52,7 +52,7 @@ export default function App() {
           style={styles.background}
           resizeMode="cover"
         >
-          <StatusBar style="light" />
+          <StatusBar style={styles.statusBar} />
           <View style={[styles.card, { backgroundColor: backgroundColor }]}>
             <Image source={imgExterna} style={styles.perfil} />
             <Text style={styles.title}>Juan Fernando Quintero</Text>
@@ -78,6 +78,9 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  statusBar: {
+    flex: 1,
+  },
   safeAreaView: {
     flex: 1,
   },
@@ -88,6 +91,9 @@ const styles = StyleSheet.create({
     height: "100%",
     display: "grid",
     placeItems: "center",
+    backgroundSize: "cover",
+    backgroundAttachment: "fixed",
+    flexDirection: "row",
   },
   container: {
     flex: 1,
@@ -105,6 +111,10 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     borderRadius: "20%",
+    alignContent: "center",
+    placeContent: "center",
+    alignItems: "center",
+    justifyContent: "center",
   },
   title: {
     marginTop: 10,
@@ -145,9 +155,5 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 16,
-  },
-  wrapperCustom: {
-    borderRadius: 8,
-    padding: 6,
   },
 });
